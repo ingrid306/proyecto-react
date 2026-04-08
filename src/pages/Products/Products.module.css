@@ -1,0 +1,254 @@
+.hero {
+  position: relative;
+  padding: 6rem 0 3rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(108, 99, 255, 0.12) 0%, transparent 70%),
+    var(--dark-2);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  color: var(--white);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.searchBar {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.searchInput {
+  padding-left: 2.75rem !important;
+  padding-right: 2.75rem !important;
+  border-radius: 999px !important;
+  background: var(--dark-3) !important;
+  font-size: 0.95rem;
+}
+
+.clearSearch {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.2rem;
+  transition: var(--transition);
+}
+
+.clearSearch:hover {
+  color: var(--white);
+}
+
+/* ===== MAIN LAYOUT ===== */
+.main {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  align-items: start;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filterTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary-light);
+}
+
+.filterTitle span {
+  font-weight: 700;
+  color: var(--white);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.catBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.catBtn:hover {
+  background: rgba(108, 99, 255, 0.1);
+  color: var(--white);
+}
+
+.catActive {
+  background: rgba(108, 99, 255, 0.2) !important;
+  color: var(--primary-light) !important;
+  font-weight: 600;
+}
+
+.catCount {
+  background: var(--dark-3);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.catActive .catCount {
+  background: rgba(108, 99, 255, 0.3);
+  color: var(--primary-light);
+}
+
+.range {
+  width: 100%;
+  accent-color: var(--primary);
+  height: 6px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--dark-3) !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.rangeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ===== CONTENT ===== */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.resultCount {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.resultCount strong {
+  color: var(--white);
+}
+
+.sortSelect {
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.empty {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.empty span {
+  font-size: 4rem;
+}
+
+.empty h3 {
+  color: var(--white);
+  font-size: 1.25rem;
+}
+
+.empty p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}
