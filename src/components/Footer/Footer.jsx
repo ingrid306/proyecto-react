@@ -67,7 +67,6 @@ const Footer = () => {
       <div className={styles.bottom}>
         <div className="container">
           <p>© {year} TechNova. Todos los derechos reservados.</p>
-          <p>Hecho con ❤️ en Argentina</p>
         </div>
       </div>
     </footer>
