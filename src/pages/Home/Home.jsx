@@ -1,11 +1,17 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { products } from "../../data/products";
+import { useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import styles from "./Home.module.css";
 
-const featuredProducts = products.filter((p) => p.featured);
-
 const Home = () => {
+  const { items: products, status } = useSelector((s) => s.products);
+
+  const featuredProducts = useMemo(
+    () => products.filter((p) => p.featured).slice(0, 6),
+    [products]
+  );
+
   return (
     <div className={styles.home}>
       {/* Hero */}
@@ -52,22 +58,22 @@ const Home = () => {
               <div className={styles.heroCardGlow} />
               <span className={styles.heroEmoji}>💻</span>
               <div className={styles.heroCardInfo}>
-                <p>Laptop Pro X15</p>
-                <span>Desde $1,299.99</span>
+                <p>Laptops Premium</p>
+                <span>Desde $499.99</span>
               </div>
             </div>
             <div className={`${styles.heroCard} ${styles.heroCard2}`}>
               <span className={styles.heroEmoji}>📱</span>
               <div className={styles.heroCardInfo}>
-                <p>Smartphone Ultra Z</p>
-                <span>Desde $899.99</span>
+                <p>Smartphones</p>
+                <span>Desde $299.99</span>
               </div>
             </div>
             <div className={`${styles.heroCard} ${styles.heroCard3}`}>
               <span className={styles.heroEmoji}>🎧</span>
               <div className={styles.heroCardInfo}>
-                <p>Auriculares ProSound</p>
-                <span>Desde $249.99</span>
+                <p>Accesorios</p>
+                <span>Desde $19.99</span>
               </div>
             </div>
           </div>
@@ -127,11 +133,30 @@ const Home = () => {
           <p className="section-subtitle">
             Los productos más elegidos por nuestros clientes
           </p>
-          <div className={styles.grid}>
-            {featuredProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+
+          {status === "loading" && (
+            <div className={styles.skeletonGrid}>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className={styles.skeletonCard}>
+                  <div className={styles.skeletonImg} />
+                  <div className={styles.skeletonBody}>
+                    <div className={styles.skeletonLine} style={{ width: "50%" }} />
+                    <div className={styles.skeletonLine} style={{ width: "80%" }} />
+                    <div className={styles.skeletonLine} style={{ width: "40%" }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {status === "succeeded" && featuredProducts.length > 0 && (
+            <div className={styles.grid}>
+              {featuredProducts.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          )}
+
           <div className={styles.featuredCta}>
             <Link to="/productos" className="btn btn-outline">
               Ver todos los productos →

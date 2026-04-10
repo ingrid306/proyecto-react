@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "./store/productsSlice";
 import { NavbarProvider } from "./context/NavbarContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -13,6 +16,15 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const status = useSelector((s) => s.products.status);
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [status, dispatch]);
+
   return (
     <NavbarProvider>
       <Header />

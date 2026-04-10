@@ -324,6 +324,47 @@
   line-height: 1.5;
 }
 
+/* ===== SKELETON ===== */
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeletonCard {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.skeletonImg {
+  height: 200px;
+  background: linear-gradient(90deg, var(--dark-3) 25%, #2a2a50 50%, var(--dark-3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonBody {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skeletonLine {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--dark-3) 25%, #2a2a50 50%, var(--dark-3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
   .heroContent {
