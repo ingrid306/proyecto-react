@@ -1,5 +1,23 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faXTwitter,
+  faInstagram,
+  faFacebookF,
+  faYoutube,
+  faTiktok,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
 import styles from "./Footer.module.css";
+
+const SOCIALS = [
+  { icon: faXTwitter, label: "X (Twitter)", href: "#" },
+  { icon: faInstagram, label: "Instagram", href: "#" },
+  { icon: faFacebookF, label: "Facebook", href: "#" },
+  { icon: faYoutube, label: "YouTube", href: "#" },
+  { icon: faTiktok, label: "TikTok", href: "#" },
+  { icon: faLinkedinIn, label: "LinkedIn", href: "#" },
+];
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -15,10 +33,11 @@ const Footer = () => {
             Tu destino para la tecnología del futuro. Productos premium al mejor precio.
           </p>
           <div className={styles.socials}>
-            <a href="#" aria-label="Twitter">𝕏</a>
-            <a href="#" aria-label="Instagram">📸</a>
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="YouTube">▶</a>
+            {SOCIALS.map(({ icon, label, href }) => (
+              <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={icon} />
+              </a>
+            ))}
           </div>
         </div>
 
